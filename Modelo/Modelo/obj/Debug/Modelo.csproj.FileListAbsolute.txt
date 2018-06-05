@@ -1,0 +1,17 @@
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\bin\Debug\Modelo.dll
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\bin\Debug\Modelo.pdb
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\bin\Debug\Newtonsoft.Json.dll
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\bin\Debug\MySql.Data.xml
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\bin\Debug\Newtonsoft.Json.xml
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.dll
+E:\SEGUNDO_DAM\PROYECTO\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.pdb
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\bin\Debug\Modelo.dll
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\bin\Debug\Modelo.pdb
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\bin\Debug\MySql.Data.xml
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.dll
+C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.pdb
