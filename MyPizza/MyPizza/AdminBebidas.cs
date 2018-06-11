@@ -21,10 +21,9 @@ namespace Vista
         Boolean service;
 
         String nombreBoton= "";
+        
 
-        private String nombreBebida;
-        private String precio;
-        private String imagen;
+        
 
         /// <summary>
         /// Constructor
@@ -55,11 +54,13 @@ namespace Vista
         /// </summary>
         public void cargarBebidas()
         {
-            List<Refresco> listaBebidas = cp.listarRefrescos();
+            List<Refresco> listaBebidas = cp.listAllDrinks();
 
             foreach (Refresco r in listaBebidas)
             {
                 listViewBebidas.Items.Add(r.getNombre());
+                
+
             }
             
         }
@@ -106,7 +107,7 @@ namespace Vista
                 txtBebida.Text = nombreBebida;
 
 
-                Refresco r= await cp.buscarRefrescoPorNombre(nombreBebida);
+                Refresco r= await cp.searchDrinkByName(nombreBebida);
                 
                 txtPrecio.Text = r.getPrecio().ToString();
 
@@ -126,11 +127,11 @@ namespace Vista
                 {
                     case "bNuevo":
 
-                        int answ = await guardarBebida(this.nombreBebida, this.precio, this.imagen);
+                        int answ = await guardarBebida(txtBebida.Text,txtPrecio.Text,null);
 
                         if (answ != 0)
                         {
-                            ShowMessage("Se ha añadido correctamente el refresco", "Correcto");
+                            showMessage("Se ha añadido correctamente el refresco", "Correcto");
                         }
                         else
                         {
@@ -140,11 +141,6 @@ namespace Vista
                         break;
 
                     case "bModificar":
-
-
-                        break;
-
-                    case "bEliminar":
 
 
                         break;
@@ -179,12 +175,7 @@ namespace Vista
             this.nombreBoton = bNuevo.Name;
 
             bCancelar.Visible = true;
-            bGuardar.Visible = true;
-
-            this.nombreBebida = txtBebida.Text;
-            this.precio = txtPrecio.Text;
-            this.imagen = null;
-            
+            bGuardar.Visible = true;    
            
         }
               
@@ -193,19 +184,41 @@ namespace Vista
         private void bModificar_Click(object sender, EventArgs e)
         {
             activarCampos();
+            ocultarBotones();
+            resetearCampos();
+
+            this.nombreBoton = bModificar.Name;
+
+            bCancelar.Visible = true;
+            bGuardar.Visible = true; ;
         }
 
         //boton eliminar
         private void bEliminar_Click(object sender, EventArgs e)
         {
+            activarCampos();
+            ocultarBotones();
+            resetearCampos();
 
+            this.nombreBoton = bEliminar.Name;
+
+            this.showMessage("Seleccione una bebida para eliminarla.","Seleccione una bebida");
+                        
+            
+
+            
+            bCancelar.Visible = true;
+            bGuardar.Visible = true;
         }
              
 
         //boton cancelar
         private void bCancelar_Click(object sender, EventArgs e)
         {
+            resetearCampos();
             desactivarCampos();
+            mostrarBotones();
+            bGuardar.Visible = false;
             bCancelar.Visible = false;
         }
         
@@ -257,7 +270,7 @@ namespace Vista
         {
             bModificar.Visible = true;
             bEliminar.Visible = true;
-            bGuardar.Visible = true;
+            bNuevo.Visible = true;
         }
 
         /// <summary>
@@ -271,11 +284,11 @@ namespace Vista
         }
 
         /// <summary>
-        /// Show message to user
+        /// Show info message to user
         /// </summary>
         /// <param name="mensaje">Message of the message box</param>
         /// <param name="titulo">Title of the message box</param>
-        public void ShowMessage(String mensaje, string titulo)
+        public void showMessage(String mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -285,20 +298,46 @@ namespace Vista
         private async Task<int> guardarBebida(String nombreBebida, String precio, String imagen)
         {
             int answ = 0;
-            MessageBox.Show(nombreBebida+precio+imagen);
+            Boolean isNumber = this.isNumber(precio);
 
-            if (nombreBebida != "" && precio != "")
+            if (isNumber == true)
             {
-                Refresco r = new Refresco(nombreBebida, Double.Parse(precio), imagen);
-                answ = await cp.agregarBebida(r);
 
+                if (nombreBebida != "" && precio != "")
+                {
+                    Refresco r = new Refresco(nombreBebida, Double.Parse(precio), imagen);
+                    answ = await cp.addDrink(r);
+                    cargarBebidas();
+                }
+                else
+                {
+                    Alert("Porfavor rellene los campos", "Campos vacios");
+                }
             }
             else
             {
-                Alert("Porfavor rellene los campos", "Campos vacios");
+                Alert("Poravor introduzca valores numericos.", "Error formato ");
             }
 
             return answ;
+        }
+
+        /// <summary>
+        /// this method check if the string that sends by parameter contains numbers or not
+        /// </summary>
+        /// <param name="txtTelefono"></param>
+        /// <returns> true if contains numbers if not return false</returns>
+        public Boolean isNumber(string txtTelefono)
+        {
+            int ejem = 0;
+            Boolean sonNumeros = false;
+
+            if (int.TryParse(txtTelefono, out ejem))
+            {
+                sonNumeros = true;
+            }
+
+            return sonNumeros;
         }
 
     }

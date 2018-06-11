@@ -13,21 +13,41 @@ namespace Modelo
         public String primeraDireccion;
         public String segundaDireccion;
         public String poblacion;
-        public String codigoPostal;
+        public String codigo_postal;
 
         public Cliente()
         {
 
         }
-        public Cliente(long id_cliente,String telefono, String primeraDireccion, string segundaDireccion,String poblacion, String codigo_postal, long id_usuario, String dni, String nombre, String apellidos, String password, String imagen, String tipo_Usuario, String correo, int activo) : base(id_usuario, dni, nombre, apellidos, password, imagen, tipo_Usuario, correo, activo)
+        public Cliente(long id_cliente,String telefono, String primeraDireccion, String segundaDireccion,String poblacion, String codigo_postal, long id_usuario, String dni, String nombre, String apellidos, String password, String imagen, String tipo_Usuario, String correo, int activo) : base(id_usuario, dni, nombre, apellidos, password, imagen, tipo_Usuario, correo, activo)
         {
             this.id_cliente = id_cliente;
             this.telefono = telefono;
             this.primeraDireccion = primeraDireccion;
             this.segundaDireccion = segundaDireccion;            
             this.poblacion = poblacion;
-            this.codigoPostal = codigo_postal;
+            this.codigo_postal = codigo_postal;
         }
+
+        public Cliente(long id_cliente, String telefono, String primeraDireccion, String poblacion, String codigo_postal, long id_usuario, String dni, String nombre, String apellidos, String password, String imagen, String tipo_Usuario, String correo, int activo) : base(id_usuario, dni, nombre, apellidos, password, imagen, tipo_Usuario, correo, activo)
+        {
+            this.id_cliente = id_cliente;
+            this.telefono = telefono;
+            this.primeraDireccion = primeraDireccion;
+            this.poblacion = poblacion;
+            this.codigo_postal = codigo_postal;
+        }
+
+
+        public Cliente(String dni, String name,String surname, String password, String image, String email, String phone, String address1, String address2, String city, String postal_code) : base( dni, name, surname, password, image, email)
+        {
+            this.telefono = phone;
+            this.primeraDireccion = address1;
+            this.segundaDireccion = address2;
+            this.poblacion = city;
+            this.codigo_postal = postal_code;
+        }
+  
 
         //getters
         public long getIdCliente()
@@ -57,7 +77,7 @@ namespace Modelo
 
         public String getCodigoPostal()
         {
-            return this.codigoPostal;
+            return this.codigo_postal;
         }
 
         //setters
@@ -88,7 +108,7 @@ namespace Modelo
 
         public void setCodigoPostal(String codigop)
         {
-            this.codigoPostal = codigop;
+            this.codigo_postal = codigop;
         }
 
 
@@ -101,7 +121,7 @@ namespace Modelo
             sb.Append(" ,segundaDireccion = " + segundaDireccion);
             sb.Append(" ,telefono = " + telefono);
             sb.Append(" ,poblacion = " + poblacion);
-            sb.Append(" ,codigo postal = "+codigoPostal);
+            sb.Append(" ,codigo postal = "+ codigo_postal);
             sb.Append(base.toString());
 
             return sb.ToString();

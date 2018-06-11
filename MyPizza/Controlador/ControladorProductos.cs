@@ -15,8 +15,8 @@ namespace Controlador
 
         private HttpRequest hreq;
 
-        private List<String> listaParam = new List<String>();
-        private List<String> listaValues = new List<String>();
+        private List<String> listParam = new List<String>();
+        private List<String> listValues = new List<String>();
 
 
         public ControladorProductos()
@@ -25,85 +25,94 @@ namespace Controlador
         }
 
         //this method clear the lists param and values 
-        public void limpiarListas()
+        public void clearLists()
         {
-            this.listaParam.Clear();
-            this.listaValues.Clear();
+            this.listParam.Clear();
+            this.listValues.Clear();
         }
 
 
 
         //--- PIZZAS --------------------------------------------------------------------//
 
-        // this method call the service method listall and list all pizzas
-        // return null if not found else return list of pizzas
-        public List<Pizza> listarPizzas()
+    
+        /// <summary>
+        /// This method list all pizzas
+        /// </summary>
+        /// <returns>list pizzas if found if not null</returns>
+        public List<Pizza> listAllPizzas()
         {
-            List<Pizza> listaPizzas = null;
+            List<Pizza> listPizzas = null;
 
             try
             {
                 var json = hreq.sendRequest("/ServicioMyPizza/servicios/WSProducto/pizzas");
-                listaPizzas = JsonConvert.DeserializeObject<List<Pizza>>(json);
+                listPizzas = JsonConvert.DeserializeObject<List<Pizza>>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                listaPizzas = null;
+                listPizzas = null;
             }
 
-            return listaPizzas;
+            return listPizzas;
         }
 
-        public void agregarPizza(String nombre, List<Ingrediente> listaIngredientes)
+
+        public void addPizza(String nombre, List<Ingrediente> listaIngredientes)
         {
 
         }
 
-        public void modificarPizza(Pizza p)
+        public void modifyPizza(Pizza p)
         {
 
         }
 
-        public void eliminarPizza(Pizza p)
+        public void removePizza(Pizza p)
         {
 
         }
 
-        public List<Ingrediente> listarIngredientesPizza(String idPizza)
+        /// <summary>
+        /// This method return the ingredients of the id pizza that recives by parameter
+        /// </summary>
+        /// <param name="idPizza">String idPizza</param>
+        /// <returns>list ingredients if found if not null</returns>
+        public List<Ingrediente> listIngredientsOfPizza(String idPizza)
         {
-            List<Ingrediente> listaIngredientes;
+            List<Ingrediente> listIngredients;
 
             try
             {
                 String json = hreq.sendRequest("/ServicioMyPizza/servicios/WSProducto/ingredientespizza/" + idPizza);
-                listaIngredientes = JsonConvert.DeserializeObject<List<Ingrediente>>(json);
+                listIngredients = JsonConvert.DeserializeObject<List<Ingrediente>>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                listaIngredientes = null;
+                listIngredients = null;
             }
 
-            return listaIngredientes;
+            return listIngredients;
         }
 
         /// <summary>
         /// This method search a pizza by name
         /// </summary>
-        /// <param name="nombrePizza"></param>
-        /// <returns>a pizza if was found or return null if don't exist</returns>
-        public async Task<Pizza> buscarPizzaPorNombre(String nombrePizza)
+        /// <param name="namePizza">name of pizza</param>
+        /// <returns>One pizza if was found or return null if don't exist</returns>
+        public async Task<Pizza> searchPizzaByName(String namePizza)
         {
             Pizza pizza = null;
 
             try
             {
-                limpiarListas();
-                listaParam.Add("name");
-                listaValues.Add(nombrePizza);
+                clearLists();
+                listParam.Add("name");
+                listValues.Add(namePizza);
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/buscarpizza", listaParam, listaValues);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/buscarpizza", listParam, listValues);
                 pizza = JsonConvert.DeserializeObject<Pizza>(json);
 
             }
@@ -119,99 +128,106 @@ namespace Controlador
 
         //this method call the service method listall and lista all ingredients
         //return null if not found else return list of ingredients      
-        public List<Ingrediente> listarIngredientes()
+        public List<Ingrediente> listAllIngredients()
         {
 
-            List<Ingrediente> listaIngredientes;
+            List<Ingrediente> listIngredients;
 
             try
             {
 
                 String json = hreq.sendRequest("/ServicioMyPizza/servicios/WSProducto/ingredientes");
-                listaIngredientes = JsonConvert.DeserializeObject<List<Ingrediente>>(json);
+                listIngredients = JsonConvert.DeserializeObject<List<Ingrediente>>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                listaIngredientes = null;
+                listIngredients = null;
             }
 
-            return listaIngredientes;
+            return listIngredients;
         }
 
         /// <summary>
         /// This method add a new ingredient in database
         /// </summary>
         /// <param name="i"></param>
-        /// <returns>0 if ingredient is not added succesfully or return 1 if ingredient is added succesfully</returns>
-        public async Task<int> agregarIngrediente(Ingrediente i)
+        /// <returns>0 if ingredient not added or 1 if ingredient added succesfully</returns>
+        public async Task<int> addIngredient(Ingrediente i)
         {
-            int agregado = 0;
+            int added = 0;
             try
             {
-                limpiarListas();
-                listaParam.Add("name");
-                listaParam.Add("price");
-                listaParam.Add("image");
+                clearLists();
+                listParam.Add("name");
+                listParam.Add("price");
+                listParam.Add("image");
 
-                listaValues.Add(i.getNombre());
-                listaValues.Add(i.getPrecio().ToString());
-                listaValues.Add(i.getImagen());
+                listValues.Add(i.getNombre());
+                listValues.Add(i.getPrecio().ToString());
+                listValues.Add(i.getImagen());
 
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/addingrediente", listaParam, listaValues);
-                agregado = JsonConvert.DeserializeObject<int>(json);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/addingrediente", listParam, listValues);
+                added = JsonConvert.DeserializeObject<int>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                agregado = 0;
+                added = 0;
             }
-            return agregado;
+            return added;
         }
 
+        /// <summary>
+        /// this method modify a ingredient
+        /// </summary>
+        /// <param name="i">ingredient</param>
+        /// <returns>0 if not modificated of 1 if modificated successfully</returns>
         public async Task<int> modificarIngrediente(Ingrediente i)
         {
-            int modificado = 0;
+            int modificated = 0;
             try
             {
-                limpiarListas();
-                listaParam.Add("id_product");
-                listaParam.Add("name");
-                listaParam.Add("price");
-                listaParam.Add("image");
+                clearLists();
+                listParam.Add("id_product");
+                listParam.Add("name");
+                listParam.Add("price");
+                listParam.Add("image");
 
-                listaValues.Add(i.getIdProducto().ToString());
-                listaValues.Add(i.getNombre());
-                listaValues.Add(i.getPrecio().ToString());
-                listaValues.Add(i.getImagen());
+                listValues.Add(i.getIdProducto().ToString());
+                listValues.Add(i.getNombre());
+                listValues.Add(i.getPrecio().ToString());
+                listValues.Add(i.getImagen());
 
 
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/modificarproducto", listaParam, listaValues);
-                modificado = JsonConvert.DeserializeObject<int>(json);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/modificarproducto", listParam, listValues);
+                modificated = JsonConvert.DeserializeObject<int>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                modificado = 0;
+                modificated = 0;
             }
-            return modificado;
+            return modificated;
         }
+
+
 
         public async Task<int> eliminarIngrediente(Ingrediente i)
         {
             int eliminado = 0;
             try
             {
-                limpiarListas();
-                listaParam.Add("id_ingredient");
+                clearLists();
+                listParam.Add("id_ingredient");
 
-                listaValues.Add(i.getIdIngrediente().ToString());
+                listValues.Add(i.getIdIngrediente().ToString());
 
 
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/eliminaringredient", listaParam, listaValues);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/eliminaringredient", listParam, listValues);
                 eliminado = JsonConvert.DeserializeObject<int>(json);
 
             }
@@ -222,17 +238,17 @@ namespace Controlador
             return eliminado;
         }
 
-        public async Task<Ingrediente> buscarIngredientePorNombre(String nombre)
+        public async Task<Ingrediente> searchIngredientByName(String nombre)
         {
             Ingrediente i = null;
 
             try
             {
-                limpiarListas();
-                listaParam.Add("name");
-                listaValues.Add(nombre);
+                clearLists();
+                listParam.Add("name");
+                listValues.Add(nombre);
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/buscaringrediente", listaParam, listaValues);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/buscaringrediente", listParam, listValues);
                 i = JsonConvert.DeserializeObject<Ingrediente>(json);
 
             }
@@ -246,24 +262,26 @@ namespace Controlador
 
         //--- BEBIDAS --------------------------------------------------------------------//
 
-        //Lista all drinks
-        //return null if not found else return list of drinks
-        public List<Refresco> listarRefrescos()
+        /// <summary>
+        /// this method lista all drinks
+        /// </summary>
+        /// <returns>list of drinks if found and null if not</returns>
+        public List<Refresco> listAllDrinks()
         {
-            List<Refresco> listaBebidas;
+            List<Refresco> listDrinks;
 
             try
             {
                 String json = hreq.sendRequest("/ServicioMyPizza/servicios/WSProducto/bebidas");
-                listaBebidas = JsonConvert.DeserializeObject<List<Refresco>>(json);
+                listDrinks = JsonConvert.DeserializeObject<List<Refresco>>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                listaBebidas = null;
+                listDrinks = null;
             }
 
-            return listaBebidas;
+            return listDrinks;
         }
 
         /// <summary>
@@ -271,59 +289,57 @@ namespace Controlador
         /// </summary>
         /// <param name="r"></param>
         /// <returns> 0 if refresh is not added succesfully or return 1 if refresh is added succesfully</returns>
-        public async Task<int> agregarBebida(Refresco r)
+        public async Task<int> addDrink(Refresco r)
         {
-            int agregado = 0;
+            int added = 0;
             try
             {
-                limpiarListas();
-                listaParam.Add("name");
-                listaParam.Add("price");
-                listaParam.Add("image");
+                clearLists();
+                listParam.Add("name");
+                listParam.Add("price");
+                listParam.Add("image");
 
-                listaValues.Add(r.getNombre());
-                listaValues.Add(r.getPrecio().ToString());
-                listaValues.Add(r.getImagen());
+                listValues.Add(r.getNombre());
+                listValues.Add(r.getPrecio().ToString());
+                listValues.Add(r.getImagen());
 
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/addbebida", listaParam, listaValues);
-                agregado = JsonConvert.DeserializeObject<int>(json);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/addbebida", listParam, listValues);
+                added = JsonConvert.DeserializeObject<int>(json);
 
             }
             catch (System.Net.WebException swe)
             {
-                agregado = 0;
+                added = 0;
             }
-            return agregado;
+            return added;
         }
 
-        public void modificarBebida(Refresco r)
+        public void modifyDrink(Refresco r)
         {
 
         }
 
-        public void eliminarBebida(Refresco r)
+        public void removeDrink(Refresco r)
         {
 
         }
 
         /// <summary>
-        /// this method assigns the received parameter to a list and sends it by post, and that information
-        /// is collected in a string, that string is serialized to a refresh, if the refresh has not been found, it
-        /// returns null, if it does not return the refresh
+        /// this method search a drink by name
         /// </summary>
-        /// <param name="nombreRefresco"></param>
-        /// <returns></returns>
-        public async Task<Refresco> buscarRefrescoPorNombre(String nombreRefresco)
+        /// <param name="nombreRefresco">string name of drink</param>
+        /// <returns>null if not found and a drink if found</returns>
+        public async Task<Refresco> searchDrinkByName(String nombreRefresco)
         {
             Refresco r = null;
             try
             {
-                limpiarListas();
-                listaParam.Add("name");
-                listaValues.Add(nombreRefresco);
+                clearLists();
+                listParam.Add("name");
+                listValues.Add(nombreRefresco);
 
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/buscarbebida", listaParam, listaValues);
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/buscarbebida", listParam, listValues);
                 r = JsonConvert.DeserializeObject<Refresco>(json);
 
             }

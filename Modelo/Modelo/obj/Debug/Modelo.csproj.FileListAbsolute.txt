@@ -15,3 +15,11 @@ C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\bin\Debug\Newtonsoft.J
 C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
 C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.dll
 C:\Users\ASUS\Desktop\final\proyecto-visual\Modelo\Modelo\obj\Debug\Modelo.pdb
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\bin\Debug\Modelo.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\bin\Debug\Modelo.pdb
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\bin\Debug\MySql.Data.xml
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.pdb

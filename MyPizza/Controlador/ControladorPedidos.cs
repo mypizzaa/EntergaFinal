@@ -16,42 +16,41 @@ namespace Controlador
 
         private double total = 0;
 
-        private List<String> listaParam = new List<String>();
-        private List<String> listaValues = new List<String>();
+        private List<String> listParam = new List<String>();
+        private List<String> listValues = new List<String>();
 
         public ControladorPedidos()
         {
             hreq = new HttpRequest();
         }
 
-        public void limpiarListas()
+        public void clearLists()
         {
-            this.listaParam.Clear();
-            this.listaValues.Clear();
+            this.listParam.Clear();
+            this.listValues.Clear();
         }
 
 
-        //--- PEDIDO -------------------------------------------------//
-
-
-        //this method call the service method listall
-        //return null if not found or list pedidoInfo
-        public List<PedidoInfo> listarPedidos()
+        /// <summary>
+        /// This method lista all orders
+        /// </summary>
+        /// <returns>list of orders info if found, if not return null</returns>
+        public List<PedidoInfo> listOrders()
         {
-            List<PedidoInfo> listaPedidosInfo = new List<PedidoInfo>();
+            List<PedidoInfo> listPedidosInfo = new List<PedidoInfo>();
 
             try
             {
 
                 String json = hreq.sendRequest("/ServicioMyPizza/servicios/WSPedido/listall");
-                listaPedidosInfo = JsonConvert.DeserializeObject<List<PedidoInfo>>(json);
+                listPedidosInfo = JsonConvert.DeserializeObject<List<PedidoInfo>>(json);
             }
             catch (System.Net.WebException swe)
             {
-                listaPedidosInfo = null;
+                listPedidosInfo = null;
             }                       
             
-            return listaPedidosInfo;
+            return listPedidosInfo;
 
         }
 
@@ -82,19 +81,19 @@ namespace Controlador
         }
         
 
-        public double sumarTotal(double num)
+        public double sumTotal(double num)
         {
             this.total = total + num;
             return this.total; 
         }
 
-        public double restarTotal(double num)
+        public double resTotal(double num)
         {
             this.total = total - num;
             return this.total;
         }
 
-        //------------------------------------------------------------//
+
 
     }
 }

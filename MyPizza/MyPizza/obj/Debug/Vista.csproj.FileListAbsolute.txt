@@ -99,3 +99,4 @@ C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\MyPizza\obj\Debug\Vista.
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\MyPizza\obj\Debug\Vista.SelectorPizzas.resources
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\MyPizza\obj\Debug\Vista.Welcome.resources
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\MyPizza\obj\Debug\Vista.csproj.GenerateResource.Cache
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\MyPizza\obj\Debug\Vista.RegistrarCliente.resources

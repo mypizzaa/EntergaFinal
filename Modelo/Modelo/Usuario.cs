@@ -45,6 +45,16 @@ namespace Modelo
             this.correo = correo;
         }
         
+        public Usuario(String dni, String name, String surname, String password, String image, String email)
+        {
+            this.dni = dni;
+            this.nombre = name;
+            this.apellidos = surname;
+            this.password = password;
+            this.imagen = image;
+            this.correo = email;
+        }
+
         public Usuario(String dni, String password)
         {
             this.dni = dni;

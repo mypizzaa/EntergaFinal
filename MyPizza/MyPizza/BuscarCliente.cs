@@ -60,7 +60,8 @@ namespace Vista
             
         }
 
-        //Metodo que comprueba que el textbox no contenga letras
+        //method that chekc if the input text are a number or not
+        //Return true if are or false if not.
         public Boolean IsNumber(string txtTelefono)
         {
             int ejem = 0;
@@ -74,11 +75,21 @@ namespace Vista
             return sonNumeros;
         }
         
+        /// <summary>
+        /// Method that shows a message alert
+        /// </summary>
+        /// <param name="mensaje">string message</param>
+        /// <param name="titulo">string title of message</param>
         public void Alert(String mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Method tath search a client if the client was found , write this client in a file
+        /// and show info message if not found show message info.
+        /// </summary>
+        /// <param name="telefono">telf</param>
         public async void buscarCliente(String telefono)
         {
             
@@ -86,7 +97,9 @@ namespace Vista
             if (c != null)
             {
                 MessageBox.Show("Cliente encontrado, los datos se guardaran en el pedido.","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                
                 escribirDatosCliente(c);
+                this.Close();
             }else
             {
                 Alert("No se ha encontrado el cliente","No se encontró");
@@ -94,11 +107,15 @@ namespace Vista
             
         }
 
+        /// <summary>
+        /// this method writes the client found int a file
+        /// </summary>
+        /// <param name="c">client</param>
         private void escribirDatosCliente(Cliente c)
         {
             using (StreamWriter sw = new StreamWriter("datosCliente.txt"))
             {
-                sw.WriteLine(c.getNombre()+";"+c.getApellidos()+";"+c.getPrimeraDireccion()+";"+c.getTelefono()+";"+c.getCodigoPostal());
+                sw.WriteLine(c.getNombre()+";"+c.getApellidos()+";"+c.getPrimeraDireccion()+";"+c.getSegundaDireccion()+";"+c.getTelefono()+";"+c.getCodigoPostal());
             }
         }
     }

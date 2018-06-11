@@ -164,6 +164,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarCliente.Designer.cs">
+      <DependentUpon>RegistrarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectorPizzas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarCliente.resx">
+      <DependentUpon>RegistrarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectorPizzas.resx">
       <DependentUpon>SelectorPizzas.cs</DependentUpon>

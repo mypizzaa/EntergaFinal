@@ -14,8 +14,8 @@ namespace Controlador
     class HttpRequest
     {
         private String token;
-        private String servidor = "http://provenapps.cat:8080";
-       
+        //private String servidor = "http://provenapps.cat:8080";
+        private String servidor = "http://localhost:8080";
 
         public HttpRequest()
         {

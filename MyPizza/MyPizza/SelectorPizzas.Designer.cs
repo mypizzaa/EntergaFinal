@@ -52,6 +52,7 @@
             this.txtTotal = new System.Windows.Forms.Label();
             this.lbleur = new System.Windows.Forms.Label();
             this.iconoCerrar = new System.Windows.Forms.PictureBox();
+            this.registrarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoCerrar)).BeginInit();
             this.SuspendLayout();
@@ -101,23 +102,25 @@
             // cerrarSessionToolStripMenuItem
             // 
             this.cerrarSessionToolStripMenuItem.Name = "cerrarSessionToolStripMenuItem";
-            this.cerrarSessionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.cerrarSessionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cerrarSessionToolStripMenuItem.Text = "Cerrar sesión";
+            this.cerrarSessionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSessionToolStripMenuItem_Click);
             // 
             // pedidosToolStripMenuItem
             // 
             this.pedidosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buscarClienteToolStripMenuItem});
+            this.buscarClienteToolStripMenuItem,
+            this.registrarClienteToolStripMenuItem});
             this.pedidosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
-            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.pedidosToolStripMenuItem.Text = "Buscar";
+            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.pedidosToolStripMenuItem.Text = "Cliente";
             // 
             // buscarClienteToolStripMenuItem
             // 
             this.buscarClienteToolStripMenuItem.Name = "buscarClienteToolStripMenuItem";
             this.buscarClienteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.B)));
-            this.buscarClienteToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.buscarClienteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.buscarClienteToolStripMenuItem.Text = "Buscar cliente";
             this.buscarClienteToolStripMenuItem.Click += new System.EventHandler(this.buscarClienteToolStripMenuItem_Click);
             // 
@@ -298,6 +301,14 @@
             this.iconoCerrar.TabStop = false;
             this.iconoCerrar.Click += new System.EventHandler(this.iconoCerrar_Click);
             // 
+            // registrarClienteToolStripMenuItem
+            // 
+            this.registrarClienteToolStripMenuItem.Name = "registrarClienteToolStripMenuItem";
+            this.registrarClienteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.registrarClienteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.registrarClienteToolStripMenuItem.Text = "Registrar cliente";
+            this.registrarClienteToolStripMenuItem.Click += new System.EventHandler(this.registrarClienteToolStripMenuItem_Click);
+            // 
             // SelectorPizzas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,5 +370,6 @@
         private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSessionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEstadoPedidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrarClienteToolStripMenuItem;
     }
 }

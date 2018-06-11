@@ -23,7 +23,9 @@ namespace Vista
         private ControladorPedidos cPed;
 
         private List<Pizza> listaPizzas;
-        private List<Object> listaPedido = new List<object>();   
+        private List<Object> listaPedido = new List<object>();
+
+        private ImageList imagelist1;
         private List<PictureBox> listaPictureBoxPizzas = new List<PictureBox>();
 
         public SelectorPizzas()
@@ -42,11 +44,12 @@ namespace Vista
                 loadPizzas();
                 loadIngredientes();
                 loadBebidas();
+                cargarImagenesListView();
 
-            }else
+            }
+            else
             {
-                ErrorServicio es = new ErrorServicio();
-                es.ShowDialog();
+                showErrorService();
             }
         }
 
@@ -57,7 +60,7 @@ namespace Vista
         private void loadPizzas()
         {
             
-            listaPizzas = cp.listarPizzas();
+            listaPizzas = cp.listAllPizzas();
             
             int j = 0;
             int x = 0;
@@ -117,7 +120,7 @@ namespace Vista
         /// </summary>
         private void loadIngredientes()
         {
-            List<Ingrediente> listaIngredientes = cp.listarIngredientes();
+            List<Ingrediente> listaIngredientes = cp.listAllIngredients();
             if(listaIngredientes != null)
             {
                 foreach(Ingrediente i in listaIngredientes)
@@ -137,7 +140,7 @@ namespace Vista
         /// </summary>
         private void loadBebidas()
         {
-            List<Refresco> listaRefrescos = cp.listarRefrescos();
+            List<Refresco> listaRefrescos = cp.listAllDrinks();
 
             int x = 40;           
             int y = 0;
@@ -154,7 +157,7 @@ namespace Vista
                         pb.Name = listaRefrescos[i].getNombre();
                         pb.Width = 100;
                         pb.Height = 100;
-                        pb.ImageLocation = "http://provenapps.cat/~dam1804/Images/bebidas/" + pathimg;
+                        pb.ImageLocation = "http://provenapps.cat/~dam1804/Images/bebidas/"+pathimg;
 
                         pb.BorderStyle = BorderStyle.None;
                         pb.BackColor = Color.White;
@@ -173,7 +176,7 @@ namespace Vista
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }
@@ -203,8 +206,8 @@ namespace Vista
 
                     
                     treeViewPedido.SelectedNode.Nodes.Add(ingredienteSeleccionado);
-                    Ingrediente i = await cp.buscarIngredientePorNombre(ingredienteSeleccionado);
-                    double num = cPed.sumarTotal(i.getPrecio());
+                    Ingrediente i = await cp.searchIngredientByName(ingredienteSeleccionado);
+                    double num = cPed.sumTotal(i.getPrecio());
                     actualizarTxtTotal(num);
                                         
                 }
@@ -216,6 +219,11 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Shows a error message
+        /// </summary>
+        /// <param name="mensaje">message</param>
+        /// <param name="titulo">title</param>
         public void Alert(String mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -224,98 +232,118 @@ namespace Vista
                       
         private async void pressedPizza(object sender, EventArgs e)
         {
-            PictureBox pb = (PictureBox)sender;
+            try
+            {
+                PictureBox pb = (PictureBox)sender;
 
-            String nombrepizza = pb.Name;
-            Pizza p = await cp.buscarPizzaPorNombre(nombrepizza);
+                String nombrepizza = pb.Name;
+                Pizza p = await cp.searchPizzaByName(nombrepizza);
 
-            addPizza(p);
-
+                addPizza(p);
+            }
+            catch (System.Net.Http.HttpRequestException)
+            {
+                showErrorService();
+            }
         }
+
 
         private async void pressedBebida(object sender, EventArgs e)
         {
-            PictureBox pb = (PictureBox)sender;
+            try
+            {
+                PictureBox pb = (PictureBox)sender;
 
-            Refresco r = await cp.buscarRefrescoPorNombre(pb.Name);
+                Refresco r = await cp.searchDrinkByName(pb.Name);
 
-            addBebida(r);
-
+                addBebida(r);
+            }
+            catch (System.Net.Http.HttpRequestException)
+            {
+                showErrorService();
+            }
         }
 
 
         /// <summary>
-        /// this method add a pizza in the listview pedido
+        /// this method add a pizza in the listview pedido and sum the price of the pizza to total.
         /// </summary>
-        /// <param name="nombre">name of pizza</param>
-        /// <param name="listIng">lista de ingredientes</param>
+        /// <param name="p">pizza</param>
         public void addPizza(Pizza p)
         {
-
-            ImageList imagelist1 = new ImageList();                            
-            imagelist1.Images.Add(Image.FromFile("..\\..\\Resources\\pizza.png"));
-
-            double num = cPed.sumarTotal(p.getPrecio());
+        
+            double num = cPed.sumTotal(p.getPrecio());
             actualizarTxtTotal(num);
 
-            List<Ingrediente> listaIng = cp.listarIngredientesPizza(p.getIdPizza().ToString());
+            List<Ingrediente> listaIng = cp.listIngredientsOfPizza(p.getIdPizza().ToString());
             List<TreeNode> nodesIngredientes = new List<TreeNode>();
 
             foreach (Ingrediente i in listaIng)
             {
 
-                TreeNode nodeIng = new TreeNode(i.getNombre());
+                TreeNode nodeIng = new TreeNode(i.getNombre(),0,0);
                 nodesIngredientes.Add(nodeIng);
             }
 
-            TreeNode pizza = new TreeNode(p.getNombre(), nodesIngredientes.ToArray());
+            TreeNode pizza = new TreeNode(p.getNombre(),0,0, nodesIngredientes.ToArray());
             treeViewPedido.Nodes.Add(pizza);
 
-
             treeViewPedido.ImageList = imagelist1;
-            treeViewPedido.ExpandAll();                      
-                       
+            treeViewPedido.ExpandAll();
+
         }
         
 
         /// <summary>
-        /// This method add a drink in the listview pedido
+        /// This method add a drink in the listview pedido and sum the price of the drink to total
         /// </summary>
         /// <param name="bebida">drink</param>
         public void addBebida(Refresco bebida)
         {
-            ImageList imagelist2 = new ImageList();
-            imagelist2.Images.Add(Image.FromFile("..\\..\\Resources\\can.png"));
-                       
-            treeViewPedido.Nodes.Add(bebida.getNombre());
+                        
+            treeViewPedido.Nodes.Add(new TreeNode(bebida.getNombre(),1,1));
 
-            double num = cPed.sumarTotal(bebida.getPrecio());
+            double num = cPed.sumTotal(bebida.getPrecio());
             actualizarTxtTotal(num);
 
-            treeViewPedido.ImageList = imagelist2;
+            treeViewPedido.SelectedImageIndex = 2;
+            treeViewPedido.ImageList = imagelist1;
+            treeViewPedido.ExpandAll();
         }
 
 
-        //remove the node selected
+        /// <summary>
+        /// this method removes the node selected depending on the type of object that is, rest the price to the 
+        /// total.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void bQuitar_Click(object sender, EventArgs e)
         {
             try
             {
 
-                String nodeSeleccionado = treeViewPedido.SelectedNode.Text; //producto seleccionado
-
-                Pizza p = await cp.buscarPizzaPorNombre(nodeSeleccionado);
-                Refresco r = await cp.buscarRefrescoPorNombre(nodeSeleccionado);
+                String nodeSelected = treeViewPedido.SelectedNode.Text; //product selected
+                
+                Pizza p = await cp.searchPizzaByName(nodeSelected);
+                Refresco r = await cp.searchDrinkByName(nodeSelected);
+                Ingrediente i = await cp.searchIngredientByName(nodeSelected);
 
                 if (p != null)
                 {
-                    double num = cPed.restarTotal(p.getPrecio());
+                    double num = cPed.resTotal(p.getPrecio());
                     treeViewPedido.SelectedNode.Remove();
                     actualizarTxtTotal(num);
                 }
                 else if (r != null)
                 {
-                    double num = cPed.restarTotal(r.getPrecio());
+                    double num = cPed.resTotal(r.getPrecio());
+                    treeViewPedido.SelectedNode.Remove();
+                    actualizarTxtTotal(num);
+
+                }else if (i != null)
+                {
+                    double num = cPed.resTotal(i.getPrecio());
                     treeViewPedido.SelectedNode.Remove();
                     actualizarTxtTotal(num);
                 }
@@ -348,15 +376,18 @@ namespace Vista
         //close the application
         private void iconoCerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dr = MessageBox.Show("Estas seguro que deseas salir de la aplicación ?", "Salir aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+                Application.Exit();
+
         }
 
-        
+
         private void bRealizarPedido_Click(object sender, EventArgs e)
         {
             DetallesPedido dp = new DetallesPedido();
             dp.ShowDialog();
-            
         }
 
 
@@ -367,15 +398,14 @@ namespace Vista
         }
 
 
-
+        
         public void actualizarTxtTotal(double num)
         {
             if (num <= 0)
             {
                 txtTotal.Text = "";
             }else
-            {
-               
+            {               
                 txtTotal.Text = num.ToString();
             }
         }
@@ -384,6 +414,39 @@ namespace Vista
         {
             EstadoPedidos ep = new EstadoPedidos();
             ep.ShowDialog();
+        }
+
+        private void cargarImagenesListView()
+        {
+            imagelist1 = new ImageList();
+            imagelist1.Images.Add(Image.FromFile("..\\..\\Resources\\pizza.png"));
+            imagelist1.Images.Add(Image.FromFile("..\\..\\Resources\\can.png"));
+        }
+
+        /// <summary>
+        /// open the panel registrarcliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void registrarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RegistrarCliente rc = new RegistrarCliente();
+            rc.ShowDialog();
+        }
+
+
+        /// <summary>
+        /// This method opens a errorservicio panel
+        /// </summary>
+        public void showErrorService()
+        {
+            ErrorServicio es = new ErrorServicio();
+            es.ShowDialog();
+        }
+
+        private void cerrarSessionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();            
         }
     }
 }

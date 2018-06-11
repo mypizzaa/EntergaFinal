@@ -32,7 +32,6 @@ namespace Vista
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetallesPedido));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,7 +51,7 @@ namespace Vista
             this.txtDiaHora = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.bAceptar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bCancelar = new System.Windows.Forms.Button();
             this.cbPago = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -65,23 +64,12 @@ namespace Vista
             this.toolStrip1.BackColor = System.Drawing.Color.Black;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(415, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -217,6 +205,7 @@ namespace Vista
             // 
             // txtDiaHora
             // 
+            this.txtDiaHora.Enabled = false;
             this.txtDiaHora.Location = new System.Drawing.Point(162, 314);
             this.txtDiaHora.Name = "txtDiaHora";
             this.txtDiaHora.Size = new System.Drawing.Size(185, 20);
@@ -247,19 +236,20 @@ namespace Vista
             this.bAceptar.UseVisualStyleBackColor = false;
             this.bAceptar.Click += new System.EventHandler(this.bAceptar_Click);
             // 
-            // button1
+            // bCancelar
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(89)))), ((int)(((byte)(91)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(163, 497);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 31);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.bCancelar.BackColor = System.Drawing.Color.Black;
+            this.bCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(89)))), ((int)(((byte)(91)))));
+            this.bCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.bCancelar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.bCancelar.Location = new System.Drawing.Point(163, 497);
+            this.bCancelar.Name = "bCancelar";
+            this.bCancelar.Size = new System.Drawing.Size(86, 31);
+            this.bCancelar.TabIndex = 41;
+            this.bCancelar.Text = "Cancelar";
+            this.bCancelar.UseVisualStyleBackColor = false;
             // 
             // cbPago
             // 
@@ -300,15 +290,16 @@ namespace Vista
             // 
             // DetallesPedido
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.bAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.bCancelar;
             this.ClientSize = new System.Drawing.Size(415, 550);
             this.Controls.Add(this.txtDetalles);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbPago);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bCancelar);
             this.Controls.Add(this.bAceptar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtDiaHora);
@@ -342,18 +333,12 @@ namespace Vista
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            this.Close();
         }
 
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -373,7 +358,7 @@ namespace Vista
         private System.Windows.Forms.TextBox txtDiaHora;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button bAceptar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bCancelar;
         private System.Windows.Forms.ComboBox cbPago;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;

@@ -110,9 +110,9 @@ namespace Controlador
 
 
         /// <summary>
-        /// This method drops an employee
+        /// This method unsubscribe an employee
         /// </summary>
-        public void darBajaEmpleado()
+        public void unsubscribeEmployee()
         {
             
         }

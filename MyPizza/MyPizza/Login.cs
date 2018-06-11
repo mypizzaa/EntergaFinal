@@ -86,7 +86,12 @@ namespace Vista
         /// <param name="e"></param>
         private void bSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dr = MessageBox.Show("Estas seguro que deseas salir de la aplicación ?", "Salir aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+                Application.Exit();
+        
+
         }
 
         //button to access
@@ -98,24 +103,30 @@ namespace Vista
 
             if (correo != null && password != null)
             {
-
-                    Boolean connected = cs.getPing();
+                Boolean connected = cs.getPing();
 
                     if (connected != false)
                     {
-
-                        Token tk = await cl.login(correo, password);
-
-                        if (tk != null)
+                        if (cs.getConnection() == true)
                         {
-                            String token = tk.getToken();
-                            writeTokenInFile(token);
-                            saberRolUsuario(tk.getUsuario());
+                            Token tk = await cl.login(correo, password);
 
-                        }
-                        else
+                            if (tk != null)
+                            {
+                                String token = tk.getToken();
+                                writeTokenInFile(token);
+                                saberRolUsuario(tk.getUsuario());
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error al iniciar sesion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                        }else
                         {
-                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error al iniciar sesion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ErrorServicio es = new ErrorServicio();
+                            es.ShowDialog();
                         }
 
                     }
@@ -124,7 +135,6 @@ namespace Vista
                         ErrorServicio es = new ErrorServicio();
                         es.ShowDialog();
                     }
-               
 
             }
             else

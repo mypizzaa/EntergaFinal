@@ -46,6 +46,7 @@
             this.bEliminar = new System.Windows.Forms.Button();
             this.bCancelar = new System.Windows.Forms.Button();
             this.bGuardar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,6 +244,16 @@
             this.bGuardar.Visible = false;
             this.bGuardar.Click += new System.EventHandler(this.bGuardar_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(569, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(15, 17);
+            this.label5.TabIndex = 48;
+            this.label5.Text = "€";
+            // 
             // AdminPizza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,6 +261,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1136, 738);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.bGuardar);
             this.Controls.Add(this.bCancelar);
             this.Controls.Add(this.bEliminar);
@@ -296,5 +308,6 @@
         private System.Windows.Forms.Button bEliminar;
         private System.Windows.Forms.Button bCancelar;
         private System.Windows.Forms.Button bGuardar;
+        private System.Windows.Forms.Label label5;
     }
 }

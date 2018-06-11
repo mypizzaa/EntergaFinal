@@ -58,7 +58,7 @@ namespace Vista
         private void cargarListViewPizzas()
         {
 
-            List<Pizza> listaPizzas = cp.listarPizzas();
+            List<Pizza> listaPizzas = cp.listAllPizzas();
 
             foreach(Pizza p in listaPizzas)
             {
@@ -74,7 +74,7 @@ namespace Vista
         private void cargarCheckBoxesIngredientes()
         {
             
-            List<Ingrediente> listaIngredientes = cp.listarIngredientes();
+            List<Ingrediente> listaIngredientes = cp.listAllIngredients();
             int j = 0;
             int x = 14;
             int y = 34;
@@ -150,7 +150,7 @@ namespace Vista
 
                 //take the price of the pizza and show it
 
-                Pizza p = await cp.buscarPizzaPorNombre(nombrepizza);
+                Pizza p = await cp.searchPizzaByName(nombrepizza);
 
                 if (p != null)
                 {
@@ -159,7 +159,7 @@ namespace Vista
                     //we call the method marcaIngredientes to select the ingredients that takes the pizza
 
                     idPizza = p.getIdPizza();
-                    List<Ingrediente> listaIngredientes = cp.listarIngredientesPizza(idPizza.ToString());
+                    List<Ingrediente> listaIngredientes = cp.listIngredientsOfPizza(idPizza.ToString());
                     marcarIngredientesPizza(listaIngredientes);
 
                     //load image to the picturebox

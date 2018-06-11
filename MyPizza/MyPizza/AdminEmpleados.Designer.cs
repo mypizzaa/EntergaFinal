@@ -168,7 +168,7 @@
             this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.bAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bAdd.Location = new System.Drawing.Point(296, 562);
+            this.bAdd.Location = new System.Drawing.Point(263, 562);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(120, 48);
             this.bAdd.TabIndex = 33;
@@ -182,7 +182,7 @@
             this.bBaja.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bBaja.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.bBaja.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bBaja.Location = new System.Drawing.Point(432, 562);
+            this.bBaja.Location = new System.Drawing.Point(389, 562);
             this.bBaja.Name = "bBaja";
             this.bBaja.Size = new System.Drawing.Size(120, 48);
             this.bBaja.TabIndex = 32;
@@ -252,7 +252,7 @@
             this.bModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bModificar.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.bModificar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bModificar.Location = new System.Drawing.Point(161, 562);
+            this.bModificar.Location = new System.Drawing.Point(137, 562);
             this.bModificar.Name = "bModificar";
             this.bModificar.Size = new System.Drawing.Size(120, 48);
             this.bModificar.TabIndex = 39;
@@ -266,7 +266,7 @@
             this.bCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bCancelar.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.bCancelar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bCancelar.Location = new System.Drawing.Point(688, 562);
+            this.bCancelar.Location = new System.Drawing.Point(706, 562);
             this.bCancelar.Name = "bCancelar";
             this.bCancelar.Size = new System.Drawing.Size(120, 48);
             this.bCancelar.TabIndex = 41;
@@ -281,7 +281,7 @@
             this.bGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bGuardar.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.bGuardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bGuardar.Location = new System.Drawing.Point(824, 562);
+            this.bGuardar.Location = new System.Drawing.Point(834, 562);
             this.bGuardar.Name = "bGuardar";
             this.bGuardar.Size = new System.Drawing.Size(120, 48);
             this.bGuardar.TabIndex = 40;

@@ -10,10 +10,9 @@ namespace Controlador
 {
     public class ControladorPago
     {
-        private List<String> listaParam = new List<String>();
-        private List<String> listaValues = new List<String>();
-
-
+        private List<String> listParam = new List<String>();
+        private List<String> listValues = new List<String>();
+        
         private HttpRequest hreq;
 
         public ControladorPago()
@@ -21,12 +20,16 @@ namespace Controlador
             hreq = new HttpRequest();
         }
 
-        public void limpiarListas()
+        public void clearList()
         {
-            this.listaParam.Clear();
-            this.listaValues.Clear();
+            this.listParam.Clear();
+            this.listValues.Clear();
         }
 
+        /// <summary>
+        /// This method list all method pays
+        /// </summary>
+        /// <returns>list of method to pay if found if not null</returns>
         public List<MetodoPago> listarMetodos()
         {
             List<MetodoPago> list = null;

@@ -24,9 +24,7 @@ namespace Vista
         long id_ingrediente = 0;
         long id_producto = 0;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
+     
         public AdminIngrediente()
         {
             cp = new ControladorProductos();
@@ -54,7 +52,7 @@ namespace Vista
         private void loadIngredientes()
         {
             listViewIngredientes.Clear();
-            List<Ingrediente> listaIngredientes = cp.listarIngredientes();
+            List<Ingrediente> listaIngredientes = cp.listAllIngredients();
 
             foreach (Ingrediente i in listaIngredientes)
             {
@@ -114,6 +112,7 @@ namespace Vista
             }
         }
 
+
         /// <summary>
         /// When user select an ingredient displays the information of the ingredient in text views
         /// </summary>
@@ -127,7 +126,7 @@ namespace Vista
                 String nombreIngrediente = listItem.Text;
                 txtIngrediente.Text = nombreIngrediente;
 
-                Ingrediente i = await cp.buscarIngredientePorNombre(nombreIngrediente);
+                Ingrediente i = await cp.searchIngredientByName(nombreIngrediente);
                 
                 txtPrecio.Text = i.getPrecio().ToString();
 
@@ -161,7 +160,7 @@ namespace Vista
                     {
                         Ingrediente i = new Ingrediente(name, double.Parse(precio), imagen);
 
-                        int answ = await cp.agregarIngrediente(i);
+                        int answ = await cp.addIngredient(i);
 
                         if (answ != 0)
                         {
@@ -237,6 +236,7 @@ namespace Vista
 
         }
 
+
         /// <summary>
         /// Reset components to the default format
         /// </summary>
@@ -246,6 +246,7 @@ namespace Vista
         {
             resetComponents();
         }
+
 
         /// <summary>
         /// Reset components
@@ -273,16 +274,7 @@ namespace Vista
             id_producto = 0;
             buttonText = "";
         }
-
-        /// <summary>
-        /// Show an alert for user
-        /// </summary>
-        /// <param name="mensaje">Message of the alert</param>
-        /// <param name="titulo">Title of the alert</param>
-        public void Alert(String mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+          
 
         /// <summary>
         /// Delete an ingredient according on what ingredient is selected
@@ -315,5 +307,18 @@ namespace Vista
                 Alert("No has seleccionado ningun ingrediente", "Error!");
             }
         }
+
+
+
+        /// <summary>
+        /// Show an alert for user
+        /// </summary>
+        /// <param name="mensaje">Message of the alert</param>
+        /// <param name="titulo">Title of the alert</param>
+        public void Alert(String mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
     }
 }

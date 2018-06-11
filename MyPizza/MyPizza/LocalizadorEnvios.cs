@@ -33,7 +33,7 @@ namespace Vista
         /// </summary>
         public void cargarPedidos()
         {
-            listaPedidos = cp.listarPedidos();
+            listaPedidos = cp.listOrders();
 
             foreach (PedidoInfo p in listaPedidos)
             {
@@ -134,6 +134,11 @@ namespace Vista
             bVerTodos.Visible = false;
             listViewPedidos.Clear();
             cargarPedidos();
+        }
+
+        private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

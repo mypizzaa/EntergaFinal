@@ -71,10 +71,14 @@ namespace Vista
         /// <param name="e"></param>
         private void iconoCerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dr = MessageBox.Show("Estas seguro que deseas salir de la aplicación ?", "Salir aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+                Application.Exit();
+
         }
-            
-        
+
+
         //Icono de minimizar
         private void iconoMini_Click(object sender, EventArgs e)
         {

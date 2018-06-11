@@ -25,8 +25,7 @@ namespace Vista
             cp = new ControladorPago();
             InitializeComponent();
             cargarDatosCliente();
-            loadPayMethods();
-            txtDetalles.Enabled = false;
+            loadPayMethods();            
            
         }
 
@@ -67,6 +66,7 @@ namespace Vista
             txtDireccion2.Text = datos[3];
             txtTelefono.Text = datos[4];
             txtCodigoPostal.Text = datos[5];
+            
 
             DateTime localDate = DateTime.Now;
             txtDiaHora.Text = localDate.ToString();
@@ -86,10 +86,8 @@ namespace Vista
 
         private void cbPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             txtDetalles.Text = mpList[cbPago.SelectedIndex].getDetalles();
-            MessageBox.Show(mpList[cbPago.SelectedIndex].getDetalles());
-
+            
         }
 
         private void bAceptar_Click(object sender, EventArgs e)

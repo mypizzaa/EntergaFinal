@@ -10,12 +10,12 @@ namespace Controlador
     public class ControladorLogin
     {
 
-        private String servidor;
-        
+        //private String servidor = "http://provenapps.cat:8080";
+        private String server = "http://localhost:8080";
+
         public ControladorLogin()
         {
-            servidor = "http://provenapps.cat:8080";
-            //servidor = "62.83.228.129:8084";
+                      
         }
 
 
@@ -40,7 +40,7 @@ namespace Controlador
 
                     var content = new FormUrlEncodedContent(values);
 
-                    var response = await client.PostAsync(servidor + "/ServicioMyPizza/servicios/WSLogin/login", content);
+                    var response = await client.PostAsync(server + "/ServicioMyPizza/servicios/WSLogin/login", content);
 
                     var json = await response.Content.ReadAsStringAsync();
 

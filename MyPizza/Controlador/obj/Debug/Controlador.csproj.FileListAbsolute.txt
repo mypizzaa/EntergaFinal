@@ -19,3 +19,13 @@ C:\Users\ASUS\Desktop\final\proyecto-visual\MyPizza\Controlador\bin\Debug\Newton
 C:\Users\ASUS\Desktop\final\proyecto-visual\MyPizza\Controlador\obj\Debug\Controlador.csprojResolveAssemblyReference.cache
 C:\Users\ASUS\Desktop\final\proyecto-visual\MyPizza\Controlador\obj\Debug\Controlador.dll
 C:\Users\ASUS\Desktop\final\proyecto-visual\MyPizza\Controlador\obj\Debug\Controlador.pdb
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Controlador.dll.config
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Controlador.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Controlador.pdb
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Modelo.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Modelo.pdb
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.dll
+C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.pdb
