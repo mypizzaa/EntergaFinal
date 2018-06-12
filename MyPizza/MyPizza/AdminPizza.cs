@@ -161,7 +161,7 @@ namespace Vista
                     idPizza = p.getIdPizza();
                     List<Ingrediente> listaIngredientes = cp.listIngredientsOfPizza(idPizza.ToString());
                     marcarIngredientesPizza(listaIngredientes);
-
+                    
                     //load image to the picturebox
                     String pathImage = p.getImagen();
                     pictureBox1.ImageLocation = "http://provenapps.cat/~dam1804/Images/pizzas/" + pathImage;

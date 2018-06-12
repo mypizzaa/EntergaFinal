@@ -183,32 +183,35 @@ namespace Vista
         //boton modificar
         private void bModificar_Click(object sender, EventArgs e)
         {
-            activarCampos();
-            ocultarBotones();
-            resetearCampos();
+            MessageBox.Show("Esta opcion esta en desarollo.","En desarollo");
 
-            this.nombreBoton = bModificar.Name;
+            //activarCampos();
+            //ocultarBotones();
+            //resetearCampos();
 
-            bCancelar.Visible = true;
-            bGuardar.Visible = true; ;
+            //this.nombreBoton = bModificar.Name;
+
+            //bCancelar.Visible = true;
+            //bGuardar.Visible = true; ;
         }
 
         //boton eliminar
         private void bEliminar_Click(object sender, EventArgs e)
         {
-            activarCampos();
-            ocultarBotones();
-            resetearCampos();
+            MessageBox.Show("Esta opcion esta en desarollo.","En desarollo");
+            //activarCampos();
+            //ocultarBotones();
+            //resetearCampos();
 
-            this.nombreBoton = bEliminar.Name;
+            //this.nombreBoton = bEliminar.Name;
 
-            this.showMessage("Seleccione una bebida para eliminarla.","Seleccione una bebida");
+            //this.showMessage("Seleccione una bebida para eliminarla.","Seleccione una bebida");
                         
             
 
             
-            bCancelar.Visible = true;
-            bGuardar.Visible = true;
+            //bCancelar.Visible = true;
+            //bGuardar.Visible = true;
         }
              
 
