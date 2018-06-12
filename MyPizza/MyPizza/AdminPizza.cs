@@ -361,23 +361,12 @@ namespace Vista
                     {
                         if (id_producto != 0)
                         {
-
-
-                            IEnumerable<Ingrediente> addList = iList.Except(selectedIngredients);
-                            IEnumerable<Ingrediente> removeList = selectedIngredients.Except(iList);
                             Producto p = new Ingrediente(id_producto, name, double.Parse(precio), imagen);
-                            foreach (Ingrediente i in addList) {
-                                MessageBox.Show("Add: "+i.getIdIngrediente());
-                            }
 
-                            foreach (Ingrediente ing in removeList)
-                            {
-                                MessageBox.Show("Remove: " + ing.getIdIngrediente());
-                            }
-                            //int answ = await cp.modificarPizza(p);
-                            //answ += await cp.addIngredientsToPizza(new Pizza(idPizza),addList);
-                            //answ += await cp.removeIngredientsFromPizza(new Pizza(idPizza),removeList);
-                            int answ = 0;
+                            int answ = await cp.modificarPizza(p);
+                            answ += await cp.removeIngredientsFromPizza(new Pizza(idPizza), selectedIngredients);
+                            answ += await cp.addIngredientsToPizza(new Pizza(idPizza),iList);
+                            
                             if (answ > 0)
                             {
                                 MessageBox.Show("Se ha modificado correctamente la pizza", "Correcto");
