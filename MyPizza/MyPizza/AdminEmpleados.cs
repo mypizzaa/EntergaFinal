@@ -157,13 +157,8 @@ namespace Vista
                 MessageBox.Show("Ningun empleado seleccionado!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             objetosporDefecto();
-
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// This reset the components by defect

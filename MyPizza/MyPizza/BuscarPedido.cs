@@ -31,7 +31,8 @@ namespace Vista
         
         private void bBuscar_Click(object sender, EventArgs e)
         {
-            int idPedido;
+            MessageBox.Show("Esta opcion esta en desarollo.","En desarollo");
+            this.Close();
         }
     }
 }

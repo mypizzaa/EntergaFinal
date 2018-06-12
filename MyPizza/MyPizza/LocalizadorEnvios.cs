@@ -24,6 +24,7 @@ namespace Vista
         {
             cp = new ControladorPedidos();
             InitializeComponent();
+            pictureBox1.ImageLocation = "http://provenapps.cat/~dam1804/Images/localizar.jpg";
             cargarPedidos();
         }
 
@@ -50,7 +51,9 @@ namespace Vista
         {
             if (listViewPedidos.SelectedItems.Count > 0)
             {
+                pictureBox1.Visible = false;
                 ListViewItem listItem = listViewPedidos.SelectedItems[0];
+                txtCodigoPedido.Text = listItem.Text;
                 long id_pedido_info = long.Parse(listItem.Text);
                 String direccion = "";
 
@@ -70,6 +73,9 @@ namespace Vista
 
                 webBrowser1.Navigate(sb.ToString());
 
+            }else
+            {
+                pictureBox1.Visible = true;
             }
         }
 
@@ -108,12 +114,8 @@ namespace Vista
                 {
                     MessageBox.Show("Porfavor inserte un numero","Error formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
                
             }
-
-
-           
           
         }
 
@@ -142,6 +144,11 @@ namespace Vista
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void bConfirmar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta opcion esta en desarollo","En desarollo");
         }
     }
 }
