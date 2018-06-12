@@ -23,3 +23,11 @@ C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\bin\Debug\Newtonso
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.dll
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.pdb
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\bin\Debug\Modelo.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\bin\Debug\Modelo.pdb
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\bin\Debug\MySql.Data.xml
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\Modelo\Modelo\obj\Debug\Modelo.pdb

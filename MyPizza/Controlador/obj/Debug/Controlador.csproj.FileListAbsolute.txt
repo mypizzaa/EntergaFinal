@@ -29,3 +29,13 @@ C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\bin\Debug\Ne
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.csprojResolveAssemblyReference.cache
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.dll
 C:\Users\ASUS\Desktop\EntregaFinal\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.pdb
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Controlador.dll.config
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Controlador.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Controlador.pdb
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Modelo.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Modelo.pdb
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.csprojResolveAssemblyReference.cache
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.dll
+C:\Users\Miki\Documents\GitHub\EntregaFinal\MyPizza\Controlador\obj\Debug\Controlador.pdb

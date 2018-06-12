@@ -11,6 +11,13 @@ namespace Modelo
     {
         public long id_pizza;
 
+        public Pizza(long idPizza)
+        {
+            this.id_pizza = idPizza;
+        }
+
+        public Pizza() { }
+
         //Constructor
         public Pizza(long id_prod, string nombre, double precio, string img, long id_tip, long id_pizza) : base(id_prod, nombre, precio, img, id_tip)
         {

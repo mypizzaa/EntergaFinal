@@ -68,6 +68,7 @@ namespace Vista
         private void bModificar_Click(object sender, EventArgs e)
         {
 
+
             Button b = (Button)sender;
             buttonText = b.Text;
             
@@ -162,7 +163,7 @@ namespace Vista
 
                         int answ = await cp.addIngredient(i);
 
-                        if (answ != 0)
+                        if (answ > 0)
                         {
                             MessageBox.Show("Se ha añadido correctamente el ingrediente", "Correcto");
                             resetComponents();
@@ -179,7 +180,7 @@ namespace Vista
 
                             int answ = await cp.modificarIngrediente(i);
 
-                            if (answ != 0)
+                            if (answ > 0)
                             {
                                 MessageBox.Show("Se ha modificado correctamente el ingrediente", "Correcto");
                                 resetComponents();

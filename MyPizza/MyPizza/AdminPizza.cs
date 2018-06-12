@@ -23,9 +23,12 @@ namespace Vista
         private ControladorServicio cs;
 
         private List<CheckBox> listCheckbox;
+        private List<Ingrediente> selectedIngredients;
 
         private Pizza p;
-        private long idPizza;
+        private long idPizza, id_producto;
+
+        private String txtButton = "";
 
         Boolean connection;
         
@@ -34,6 +37,7 @@ namespace Vista
         {
             cp = new ControladorProductos();
             cs = new ControladorServicio();
+            selectedIngredients = new List<Ingrediente>();
 
             listCheckbox = new List<CheckBox>();             
             InitializeComponent();
@@ -59,7 +63,7 @@ namespace Vista
         {
 
             List<Pizza> listaPizzas = cp.listAllPizzas();
-
+            ListViewPizzas.Clear();
             foreach(Pizza p in listaPizzas)
             {
                 ListViewPizzas.Items.Add(p.getNombre());
@@ -86,6 +90,7 @@ namespace Vista
                 cb.Text = (listaIngredientes[i].getNombre().ToString());
                 cb.Height= 21;
                 cb.Width = 130;
+                cb.Name = "cb" + listaIngredientes[i].getIdIngrediente();
 
                 if (i % 4 == 0 && i != 0)
                 {
@@ -155,10 +160,11 @@ namespace Vista
                 if (p != null)
                 {
                     txtPrecio.Text = p.getPrecio().ToString();
+                    id_producto = p.getIdProducto();
 
                     //we call the method marcaIngredientes to select the ingredients that takes the pizza
 
-                    idPizza = p.getIdPizza();
+                    idPizza = p.getIdPizza();                    
                     List<Ingrediente> listaIngredientes = cp.listIngredientsOfPizza(idPizza.ToString());
                     marcarIngredientesPizza(listaIngredientes);
 
@@ -180,6 +186,7 @@ namespace Vista
         //boton modificar
         private void bModificar_Click(object sender, EventArgs e)
         {
+            txtButton = "modificar";
             txtNombrePizza.Enabled = true;
             txtPrecio.Enabled = true;
             bAñadirImagen.Enabled = true;
@@ -244,11 +251,29 @@ namespace Vista
 
         private void bModificar_Click_1(object sender, EventArgs e)
         {
-            bGuardar.Visible = true;
-            bCancelar.Visible = true;
-            bAñadirImagen.Visible = true;
+            if (idPizza > 0)
+            {                
+                foreach (CheckBox cb in listCheckbox)
+                {
+                    if (cb.Checked == true)
+                    {
+                        long id_ingrediente = long.Parse(cb.Name.Substring(2));
+                        selectedIngredients.Add(new Ingrediente(id_ingrediente));
+                    }
+                }
+                txtButton = "modificar";
+                bGuardar.Visible = true;
+                bCancelar.Visible = true;
+                bModificar.Visible = false;
+                bEliminar.Visible = false;
+                bNueva.Visible = false;
+                bAñadirImagen.Visible = true;
 
-            activarControles();
+                activarControles();
+            }
+            else {
+                Alert("No has seleccionado ninguna pizza", "Error!");
+            }
 
         }
 
@@ -257,6 +282,7 @@ namespace Vista
             txtNombrePizza.Enabled = true;
             txtPrecio.Enabled = true;
             groupBoxIngredientes.Enabled = true;
+            ListViewPizzas.Enabled = false;
         }
 
         private void desactivarControles()
@@ -264,12 +290,18 @@ namespace Vista
             txtNombrePizza.Enabled = false;
             txtPrecio.Enabled = false;
             groupBoxIngredientes.Enabled = false;
+            ListViewPizzas.Enabled = true;
         }
 
         private void bNueva_Click_1(object sender, EventArgs e)
         {
+            txtButton = "add";
+
             bGuardar.Visible = true;
             bCancelar.Visible = true;
+            bModificar.Visible = false;
+            bEliminar.Visible = false;
+            bNueva.Visible = false;
             bAñadirImagen.Visible = true;
             resetControles();
             activarControles();
@@ -287,23 +319,156 @@ namespace Vista
             }
         }
 
-        private void bGuardar_Click(object sender, EventArgs e)
+        private async void bGuardar_Click(object sender, EventArgs e)
         {
-            bGuardar.Visible = false;
-            bCancelar.Visible = false;
-            desactivarControles();
+            string name = txtNombrePizza.Text;
+            string precio = txtPrecio.Text;
+            string imagen = "";
+            List<Ingrediente> iList = new List<Ingrediente>();
+
+            foreach(CheckBox cb in listCheckbox) {
+                if (cb.Checked == true) {
+                    long id_ingrediente = long.Parse(cb.Name.Substring(2));
+                    iList.Add(new Ingrediente(id_ingrediente));
+                }
+            }
+
+            precio = precio.Replace(",", ".");
+
+            if (!"".Equals(name) && !"".Equals(precio))
+            {
+                try
+                {
+                    if (txtButton.Equals("add"))
+                    {
+                        Producto prod = new Producto(name, double.Parse(precio), imagen);
+
+                        int answ = await cp.addPizza(prod, iList);
+                        if (answ > 0)
+                        {
+                            MessageBox.Show("La pizza se ha añadido correctamente", "Correcto");
+                            cargarListViewPizzas();
+                            cargarCheckBoxesIngredientes();
+                            resetComponents();
+
+                        }
+                        else
+                        {
+                            Alert("No se ha podido añadir la pizza", "Error!");
+                        }
+                    }
+                    else if (txtButton.Equals("modificar"))
+                    {
+                        if (id_producto != 0)
+                        {
+
+
+                            IEnumerable<Ingrediente> addList = iList.Except(selectedIngredients);
+                            IEnumerable<Ingrediente> removeList = selectedIngredients.Except(iList);
+                            Producto p = new Ingrediente(id_producto, name, double.Parse(precio), imagen);
+                            foreach (Ingrediente i in addList) {
+                                MessageBox.Show("Add: "+i.getIdIngrediente());
+                            }
+
+                            foreach (Ingrediente ing in removeList)
+                            {
+                                MessageBox.Show("Remove: " + ing.getIdIngrediente());
+                            }
+                            //int answ = await cp.modificarPizza(p);
+                            //answ += await cp.addIngredientsToPizza(new Pizza(idPizza),addList);
+                            //answ += await cp.removeIngredientsFromPizza(new Pizza(idPizza),removeList);
+                            int answ = 0;
+                            if (answ > 0)
+                            {
+                                MessageBox.Show("Se ha modificado correctamente la pizza", "Correcto");
+                                cargarListViewPizzas();
+                                cargarCheckBoxesIngredientes();
+                                resetComponents();
+                            }
+                            else
+                            {
+                                Alert("No se ha podido modificar la pizza", "Error!");
+                            }
+                        }
+                        else
+                        {
+                            Alert("Ingrediente no seleccionado", "Error!");
+                        }
+                    }
+                }
+                catch (FormatException fe)
+                {
+                    Alert("El campo precio es incorrecto", "Campos no validos");
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                Alert("El campo nombre y precio no pueden estar vacíos", "Campos no validos");
+            }
         }
 
         private void bCancelar_Click_1(object sender, EventArgs e)
         {
-            bGuardar.Visible = false;
-            bCancelar.Visible = false;
-            desactivarControles();
+            resetComponents();
         }
 
         public void Alert(String mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private async void bEliminar_Click(object sender, EventArgs e)
+        {
+            if (idPizza > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Estas seguro que quieres eliminar la pizza \"" + txtNombrePizza.Text + "\"?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int answ = await cp.eliminarPizza(new Pizza(idPizza));
+
+                    if (answ > 0)
+                    {
+                        MessageBox.Show("Se ha eliminado correctamente la pizza", "Correcto");
+                        cargarListViewPizzas();
+                        cargarCheckBoxesIngredientes();
+                        resetComponents();
+
+                    }
+                    else
+                    {
+                        Alert("No se ha podido eliminar la pizza", "Error!");
+                    }
+                }
+            }
+            else
+            {
+                Alert("No has seleccionado ninguna pizza", "Error!");
+            }
+        }
+
+        /// <summary>
+        /// Reset components
+        /// </summary>
+        private void resetComponents()
+        {
+            resetControles();
+            desactivarControles();
+
+            bCancelar.Visible = false;
+            bGuardar.Visible = false;
+
+            bNueva.Visible = true;
+            bEliminar.Visible = true;
+            bModificar.Visible = true;
+
+            idPizza = 0;
+            id_producto = 0;
+            txtButton = "";
+            selectedIngredients.Clear();
+        }
+
     }
 }

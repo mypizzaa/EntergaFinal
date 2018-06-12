@@ -11,7 +11,7 @@ namespace Controlador
     {
 
         //private String servidor = "http://provenapps.cat:8080";
-        private String server = "http://localhost:8080";
+        private String server = "http://localhost:8084";
 
         public ControladorLogin()
         {

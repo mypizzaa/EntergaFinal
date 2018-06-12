@@ -13,7 +13,7 @@ namespace Controlador
     {
         //private String servidor = "provenapps.cat";
         private String ip = "127.0.0.1";
-        private String servidor = "http://localhost:8080";
+        private String servidor = "http://localhost:8084";
 
         private Boolean ping;
         private Boolean conn;
