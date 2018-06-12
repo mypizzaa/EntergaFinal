@@ -29,13 +29,6 @@ namespace Modelo
             this.id_tipo = id_tip;
         }
 
-        public Producto (String nombre, double precio, String img)
-        {
-            this.nombre = nombre;
-            this.precio = precio;
-            this.imagen = img;
-        }
-
         public Producto(String nombre)
         {
             this.nombre = nombre;

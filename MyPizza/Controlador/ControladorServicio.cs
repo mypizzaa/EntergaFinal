@@ -13,15 +13,17 @@ namespace Controlador
     {
         //private String servidor = "provenapps.cat";
         private String ip = "127.0.0.1";
-        private String servidor = "http://localhost:8084";
+        private String servidor = "http://localhost:8080";
 
         private Boolean ping;
         private Boolean conn;
+        private Boolean connDB;
 
         public ControladorServicio()
         {
             ping = false;
             conn = false;
+            connDB = false;
         }
         
         /// <summary>
@@ -58,6 +60,7 @@ namespace Controlador
                     json = wc.DownloadString(this.servidor + "/ServicioMyPizza/servicios/Connection/test");
 
                     int answ = int.Parse(json);
+                    
                     if (answ == 1)
                         conn = true;
 
@@ -71,6 +74,33 @@ namespace Controlador
             return conn;
 
         }
+
+        public Boolean getConnectionDB()
+        {
+            String json;
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+
+                    wc.Encoding = System.Text.Encoding.UTF8;
+                    json = wc.DownloadString(this.servidor + "/ServicioMyPizza/servicios/Connection/testdatabase");
+
+                    int answ = int.Parse(json);
+                    Console.WriteLine("-------------------------------------------" + answ);
+                    if (answ == 1)
+                        connDB = true;
+
+                }
+            }
+            catch (System.Net.WebException swe)
+            {
+
+            }
+
+            return connDB;
+        }
+        
 
 
 

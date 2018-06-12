@@ -37,7 +37,10 @@ namespace Vista
 
             foreach (PedidoInfo p in listaPedidos)
             {
-                listViewPedidos.Items.Add(p.getId_pedido_info().ToString());
+                if (p.getId_estado() == 3) //if estado equals listo(3)
+                {
+                    listViewPedidos.Items.Add(p.getId_pedido_info().ToString());
+                }
             }
 
         }

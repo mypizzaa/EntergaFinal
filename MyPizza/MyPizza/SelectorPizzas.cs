@@ -237,9 +237,10 @@ namespace Vista
                 PictureBox pb = (PictureBox)sender;
 
                 String nombrepizza = pb.Name;
+               
                 Pizza p = await cp.searchPizzaByName(nombrepizza);
-
                 addPizza(p);
+                
             }
             catch (System.Net.Http.HttpRequestException)
             {
@@ -353,7 +354,7 @@ namespace Vista
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No hay ningun item seleccionado", "Error");
+                MessageBox.Show("No hay ningun producto seleccionado", "Error");
             }
         }
 
@@ -386,7 +387,8 @@ namespace Vista
 
         private void bRealizarPedido_Click(object sender, EventArgs e)
         {
-            DetallesPedido dp = new DetallesPedido();
+            string total = txtTotal.Text;
+            DetallesPedido dp = new DetallesPedido(total);
             dp.ShowDialog();
         }
 
@@ -401,9 +403,14 @@ namespace Vista
         
         public void actualizarTxtTotal(double num)
         {
-            if (num <= 0)
+            if(treeViewPedido.Nodes.Count == 0) {
+
+                txtTotal.Text = "0";
+            }
+
+            if (num == 0)
             {
-                txtTotal.Text = "";
+                txtTotal.Text = "0";
             }else
             {               
                 txtTotal.Text = num.ToString();
@@ -442,6 +449,12 @@ namespace Vista
         {
             ErrorServicio es = new ErrorServicio();
             es.ShowDialog();
+        }
+
+        public void showErrorDatabase()
+        {
+            ErrorDB ed = new ErrorDB();
+            ed.ShowDialog();
         }
 
         private void cerrarSessionToolStripMenuItem_Click(object sender, EventArgs e)

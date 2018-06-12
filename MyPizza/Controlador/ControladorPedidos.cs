@@ -54,25 +54,41 @@ namespace Controlador
 
         }
 
-        //public List<PedidoInfo> buscarPedido(String id)
-        //{
 
-        //    //PedidoInfo pi;
-
-        //    //using (WebClient wc = new WebClient())
-        //    //{
-        //    //    wc.Encoding = System.Text.Encoding.UTF8;
-        //    //    String json = wc.DownloadString("http://localhost:8080/ServicioMyPizza/servicios/WSPedido/buscar/"+id);
-        //    //    pi = JsonConvert.DeserializeObject<PedidoInfo>(json);
-
-        //    //}
-
-        //    //return pi;
-        //}
-        
-        public void crearPedido()
+        public async Task<int> crearPedido(string direccion, long client_id, long paymethod_id, double total, String datetime)
         {
-            //todo
+            int id_pedido_info = 0;
+
+            try
+            {
+
+                clearLists();
+                listParam.Add("address");
+                listParam.Add("client_id");
+                listParam.Add("payMethod_id");
+                listParam.Add("total_price");
+                listParam.Add("date_time");
+                
+                listValues.Add(direccion);
+                listValues.Add(client_id.ToString());
+                listValues.Add(paymethod_id.ToString());
+                listValues.Add(total.ToString());
+                listValues.Add(datetime);
+                
+
+                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSPedido/createorder", listParam, listValues);
+                id_pedido_info = JsonConvert.DeserializeObject<int>(json);
+            }
+            catch (System.Net.WebException swe)
+            {
+                id_pedido_info = 0;
+            }
+
+            return id_pedido_info;
+
+
+
+
         }
 
         public void eliminarPedido()

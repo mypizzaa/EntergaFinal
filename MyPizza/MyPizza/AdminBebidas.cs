@@ -166,7 +166,7 @@ namespace Vista
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void bNuevo_Click(object sender, EventArgs e)
+        private void bNuevo_Click(object sender, EventArgs e)
         {
             activarCampos();
             ocultarBotones();

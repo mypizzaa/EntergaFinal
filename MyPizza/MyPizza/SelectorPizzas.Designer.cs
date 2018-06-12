@@ -36,6 +36,7 @@
             this.cerrarSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lOCALIZARPEDIDOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verEstadoPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label12 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.txtTotal = new System.Windows.Forms.Label();
             this.lbleur = new System.Windows.Forms.Label();
             this.iconoCerrar = new System.Windows.Forms.PictureBox();
-            this.registrarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoCerrar)).BeginInit();
             this.SuspendLayout();
@@ -102,7 +102,7 @@
             // cerrarSessionToolStripMenuItem
             // 
             this.cerrarSessionToolStripMenuItem.Name = "cerrarSessionToolStripMenuItem";
-            this.cerrarSessionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cerrarSessionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cerrarSessionToolStripMenuItem.Text = "Cerrar sesión";
             this.cerrarSessionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSessionToolStripMenuItem_Click);
             // 
@@ -124,6 +124,14 @@
             this.buscarClienteToolStripMenuItem.Text = "Buscar cliente";
             this.buscarClienteToolStripMenuItem.Click += new System.EventHandler(this.buscarClienteToolStripMenuItem_Click);
             // 
+            // registrarClienteToolStripMenuItem
+            // 
+            this.registrarClienteToolStripMenuItem.Name = "registrarClienteToolStripMenuItem";
+            this.registrarClienteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.registrarClienteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.registrarClienteToolStripMenuItem.Text = "Registrar cliente";
+            this.registrarClienteToolStripMenuItem.Click += new System.EventHandler(this.registrarClienteToolStripMenuItem_Click);
+            // 
             // lOCALIZARPEDIDOSToolStripMenuItem1
             // 
             this.lOCALIZARPEDIDOSToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
@@ -143,6 +151,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(38, 35);
@@ -166,6 +175,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(1140, 35);
             this.label14.Name = "label14";
@@ -176,7 +186,7 @@
             // panelPizzas
             // 
             this.panelPizzas.AutoScroll = true;
-            this.panelPizzas.BackColor = System.Drawing.Color.CadetBlue;
+            this.panelPizzas.BackColor = System.Drawing.Color.Transparent;
             this.panelPizzas.Location = new System.Drawing.Point(267, 58);
             this.panelPizzas.Name = "panelPizzas";
             this.panelPizzas.Size = new System.Drawing.Size(845, 477);
@@ -265,7 +275,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 551);
+            this.label2.Location = new System.Drawing.Point(35, 551);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 20);
             this.label2.TabIndex = 46;
@@ -274,15 +284,17 @@
             // txtTotal
             // 
             this.txtTotal.AutoSize = true;
-            this.txtTotal.Location = new System.Drawing.Point(122, 556);
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.txtTotal.Location = new System.Drawing.Point(113, 546);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(0, 13);
+            this.txtTotal.Size = new System.Drawing.Size(0, 29);
             this.txtTotal.TabIndex = 47;
             // 
             // lbleur
             // 
             this.lbleur.AutoSize = true;
-            this.lbleur.Location = new System.Drawing.Point(173, 556);
+            this.lbleur.Location = new System.Drawing.Point(215, 558);
             this.lbleur.Name = "lbleur";
             this.lbleur.Size = new System.Drawing.Size(13, 13);
             this.lbleur.TabIndex = 0;
@@ -301,19 +313,12 @@
             this.iconoCerrar.TabStop = false;
             this.iconoCerrar.Click += new System.EventHandler(this.iconoCerrar_Click);
             // 
-            // registrarClienteToolStripMenuItem
-            // 
-            this.registrarClienteToolStripMenuItem.Name = "registrarClienteToolStripMenuItem";
-            this.registrarClienteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
-            this.registrarClienteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.registrarClienteToolStripMenuItem.Text = "Registrar cliente";
-            this.registrarClienteToolStripMenuItem.Click += new System.EventHandler(this.registrarClienteToolStripMenuItem_Click);
-            // 
             // SelectorPizzas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.CadetBlue;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::Vista.Properties.Resources.seigaiha;
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.lbleur);
             this.Controls.Add(this.txtTotal);
@@ -332,6 +337,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.treeViewPedido);
             this.Controls.Add(this.listViewIngredientes);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SelectorPizzas";

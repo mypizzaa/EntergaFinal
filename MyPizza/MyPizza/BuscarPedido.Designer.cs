@@ -115,6 +115,7 @@
             this.bBuscar.TabIndex = 30;
             this.bBuscar.Text = "buscar";
             this.bBuscar.UseVisualStyleBackColor = false;
+            this.bBuscar.Click += new System.EventHandler(this.bBuscar_Click);
             // 
             // BuscarPedido
             // 

@@ -103,30 +103,38 @@ namespace Vista
 
             if (correo != null && password != null)
             {
-                Boolean connected = cs.getPing();
-
-                    if (connected != false)
+                    if (cs.getPing() != false)
                     {
-                        if (cs.getConnection() == true)
+                        if (cs.getConnectionDB() !=  false)
                         {
-                            Token tk = await cl.login(correo, password);
 
-                            if (tk != null)
+                            if (cs.getConnection() == true)
                             {
-                                String token = tk.getToken();
-                                writeTokenInFile(token);
-                                saberRolUsuario(tk.getUsuario());
+
+                                Token tk = await cl.login(correo, password);
+
+                                if (tk != null)
+                                {
+                                    String token = tk.getToken();
+                                    writeTokenInFile(token);
+                                    saberRolUsuario(tk.getUsuario());
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error al iniciar sesion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
 
                             }
                             else
                             {
-                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error al iniciar sesion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                ErrorServicio es = new ErrorServicio();
+                                es.ShowDialog();
                             }
-
                         }else
                         {
-                            ErrorServicio es = new ErrorServicio();
-                            es.ShowDialog();
+                            ErrorDB edb = new ErrorDB();
+                            edb.ShowDialog();
                         }
 
                     }
@@ -187,8 +195,7 @@ namespace Vista
                     this.Close();
 
                     break;
-                case "cliente":
-                    break;
+
             }
         }
 

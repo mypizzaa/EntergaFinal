@@ -65,7 +65,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.CadetBlue;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.bConfirmar);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtIdPedidos);
@@ -123,7 +123,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.CadetBlue;
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.bVerTodos);
             this.panel2.Controls.Add(this.bBuscar);
             this.panel2.Controls.Add(this.listViewPedidos);
@@ -197,7 +197,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.CadetBlue;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::Vista.Properties.Resources.seigaiha;
             this.ClientSize = new System.Drawing.Size(1354, 752);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel2);

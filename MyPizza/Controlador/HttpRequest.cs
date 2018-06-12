@@ -15,7 +15,7 @@ namespace Controlador
     {
         private String token;
         //private String servidor = "http://provenapps.cat:8080";
-        private String servidor = "http://localhost:8084";
+        private String servidor = "http://localhost:8080";
 
         public HttpRequest()
         {
@@ -68,11 +68,11 @@ namespace Controlador
             {
                 client.DefaultRequestHeaders.Add("X-API-KEY", this.token); //Add the token to request
 
-                var values = new List<KeyValuePair<String, String>>();
+                var values = new Dictionary<String, String>();
 
                 for (int i = 0; i < parametros.Count; i++)
                 {
-                    values.Add(new KeyValuePair<String, String>(parametros[i], valores[i]));
+                    values.Add(parametros[i], valores[i]);
                 }
 
                 var content = new FormUrlEncodedContent(values);

@@ -59,130 +59,20 @@ namespace Controlador
         }
 
 
-        public async Task<int> addPizza(Producto p, List<Ingrediente> iList)
+        public void addPizza(String nombre, List<Ingrediente> listaIngredientes)
         {
-            int added = 0;
-            try
-            {
-                clearLists();
-                listParam.Add("name");
-                listParam.Add("price");
-                listParam.Add("image");
-                foreach (Ingrediente i in iList)
-                {
-                    listParam.Add("idIngredient");
-                }
 
-                listValues.Add(p.getNombre());
-                listValues.Add(p.getPrecio().ToString());
-                listValues.Add(p.getImagen());
-                foreach (Ingrediente i in iList)
-                {
-                    listValues.Add(i.getIdIngrediente().ToString());
-                }
-
-
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/addpizza", listParam, listValues);
-                added = JsonConvert.DeserializeObject<int>(json);
-
-            }
-            catch (System.Net.WebException swe)
-            {
-                added = 0;
-            }
-
-            return added;
         }
 
-        public async Task<int> modificarPizza(Producto p)
+        public void modifyPizza(Pizza p)
         {
-            int modificated = 0;
-            try
-            {
-                clearLists();
-                listParam.Add("id_product");
-                listParam.Add("name");
-                listParam.Add("price");
-                listParam.Add("image");
 
-                listValues.Add(p.getIdProducto().ToString());
-                listValues.Add(p.getNombre());
-                listValues.Add(p.getPrecio().ToString());
-                listValues.Add(p.getImagen());
-
-
-
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/modificarproducto", listParam, listValues);
-                modificated = JsonConvert.DeserializeObject<int>(json);
-
-            }
-            catch (System.Net.WebException swe)
-            {
-                modificated = 0;
-            }
-
-            return modificated;
         }
 
-        public async Task<int> removeIngredientsFromPizza(Pizza p, List<Ingrediente> iList)
+        public void removePizza(Pizza p)
         {
-            int modificated = 0;
-            try
-            {
-                clearLists();
-                listParam.Add("id_pizza");
-                foreach (Ingrediente i in iList)
-                {
-                    listParam.Add("idIngredient");
-                }
 
-                listValues.Add(p.getIdPizza().ToString());
-                foreach (Ingrediente i in iList)
-                {
-                    listValues.Add(i.getIdIngrediente().ToString());
-                }
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/eliminaringredientspizza", listParam, listValues);
-                modificated = JsonConvert.DeserializeObject<int>(json);
-
-            }
-            catch (System.Net.WebException swe)
-            {
-                modificated = 0;
-            }
-
-            return modificated;
         }
-
-        public async Task<int> addIngredientsToPizza(Pizza p, List<Ingrediente> iList)
-        {
-            int modificated = 0;
-            try
-            {
-                clearLists();
-                listParam.Add("id_pizza");
-                foreach (Ingrediente i in iList)
-                {
-                    listParam.Add("idIngredient");
-                }
-
-                listValues.Add(p.getIdPizza().ToString());
-                foreach (Ingrediente i in iList)
-                {
-                    listValues.Add(i.getIdIngrediente().ToString());
-                }
-
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/addingredientespizza", listParam, listValues);
-                modificated = JsonConvert.DeserializeObject<int>(json);
-
-            }
-            catch (System.Net.WebException swe)
-            {
-                modificated = 0;
-            }
-
-            return modificated;
-        }
-
 
         /// <summary>
         /// This method return the ingredients of the id pizza that recives by parameter
@@ -230,31 +120,7 @@ namespace Controlador
             {
                 pizza = null;
             }
-
             return pizza;
-        }
-
-        public async Task<int> eliminarPizza(Pizza p)
-        {
-            int eliminado = 0;
-            try
-            {
-                clearLists();
-                listParam.Add("id_pizza");
-                listValues.Add(p.getIdPizza().ToString());
-
-
-
-                String json = await hreq.sendRequestPOST("/ServicioMyPizza/servicios/WSProducto/eliminarpizza", listParam, listValues);
-                eliminado = JsonConvert.DeserializeObject<int>(json);
-
-            }
-            catch (System.Net.WebException swe)
-            {
-                eliminado = 0;
-            }
-
-            return eliminado;
         }
 
 
@@ -344,7 +210,6 @@ namespace Controlador
             {
                 modificated = 0;
             }
-
             return modificated;
         }
 
@@ -391,7 +256,6 @@ namespace Controlador
             {
                 i = null;
             }
-
             return i;
         }
 
@@ -416,7 +280,7 @@ namespace Controlador
             {
                 listDrinks = null;
             }
- 
+
             return listDrinks;
         }
 
@@ -448,7 +312,6 @@ namespace Controlador
             {
                 added = 0;
             }
-
             return added;
         }
 

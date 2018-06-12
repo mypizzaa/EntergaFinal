@@ -121,6 +121,12 @@
     <Compile Include="DetallesPedido.Designer.cs">
       <DependentUpon>DetallesPedido.cs</DependentUpon>
     </Compile>
+    <Compile Include="ErrorDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorDB.Designer.cs">
+      <DependentUpon>ErrorDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="ErrorServicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetallesPedido.resx">
       <DependentUpon>DetallesPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorDB.resx">
+      <DependentUpon>ErrorDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorServicio.resx">
       <DependentUpon>ErrorServicio.cs</DependentUpon>
@@ -306,6 +315,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\conos1.png" />
+    <None Include="Resources\cinta.png" />
+    <None Include="Resources\conos.png" />
+    <None Include="Resources\seigaiha.png" />
+    <None Include="Resources\fondopizza.jpg" />
+    <None Include="Resources\logo_x_pattern.png" />
+    <None Include="Resources\269.jpg" />
     <None Include="Resources\search.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\ing.png" />

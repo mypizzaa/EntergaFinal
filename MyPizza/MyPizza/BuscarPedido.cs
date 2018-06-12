@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controlador;
+using Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,24 @@ namespace Vista
 {
     public partial class BuscarPedido : Form
     {
+       
+
         public BuscarPedido()
         {
             InitializeComponent();
+          
         }
+               
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        
+        private void bBuscar_Click(object sender, EventArgs e)
+        {
+            int idPedido;
         }
     }
 }

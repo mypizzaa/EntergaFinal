@@ -16,16 +16,20 @@ namespace Vista
     public partial class DetallesPedido : Form
     {
         private ControladorPago cp;
+        private ControladorPedidos cped;
+
         private List<MetodoPago> mpList = null;
 
         String linea;
 
-        public DetallesPedido()
+        public DetallesPedido(string total)
         {
             cp = new ControladorPago();
+            cped = new ControladorPedidos();
             InitializeComponent();
             cargarDatosCliente();
-            loadPayMethods();            
+            loadPayMethods();
+            txtPrecio.Text = total;            
            
         }
 
@@ -93,6 +97,8 @@ namespace Vista
         private void bAceptar_Click(object sender, EventArgs e)
         {
 
+
+            //cped.crearPedido();
         }
     }
 }

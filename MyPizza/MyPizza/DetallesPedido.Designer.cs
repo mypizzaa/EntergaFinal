@@ -56,6 +56,7 @@ namespace Vista
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDetalles = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -288,6 +289,15 @@ namespace Vista
             this.txtDetalles.Size = new System.Drawing.Size(176, 55);
             this.txtDetalles.TabIndex = 45;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(255, 285);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(13, 13);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "€";
+            // 
             // DetallesPedido
             // 
             this.AcceptButton = this.bAceptar;
@@ -295,6 +305,7 @@ namespace Vista
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bCancelar;
             this.ClientSize = new System.Drawing.Size(415, 550);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.txtDetalles);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -363,5 +374,6 @@ namespace Vista
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtDetalles;
+        private System.Windows.Forms.Label label12;
     }
 }
